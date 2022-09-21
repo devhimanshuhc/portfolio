@@ -63,7 +63,7 @@ const ContactForm = () => {
                 isInvalid={form.errors.name !== undefined && form.touched.name}
               >
                 <FormLabel htmlFor="name">Name</FormLabel>
-                <Input {...field} id="name" placeholder="Aman Kumar" />
+                <Input {...field} id="name" placeholder="Himanshu Chauhan" />
                 <FormErrorMessage>{form.errors.name}</FormErrorMessage>
               </FormControl>
             )}

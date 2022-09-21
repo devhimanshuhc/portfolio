@@ -18,11 +18,11 @@ export default class Document extends NextDocument {
           <link rel="icon" href="/brand/halfLogo.svg" />
           <meta
             name="description"
-            content="I'm a 21-year-old aspiring software engineer, currently pursuing my BTech in Computer Science and Engineering from IIIT Nagpur. I'm currently working on my projects and looking for new opportunities. I'm passionate about learning new technologies, contributing to open-source and solving problems."
+            content="I'm a 19-year-old aspiring software engineer. I'm currently working on my projects and looking for new opportunities. I'm passionate about learning new technologies."
           />
           <meta
             name="keywords"
-            content="Aman, Aman Kumar, GSoC, Gnome, Portfolio, amankrx"
+            content="Himanshu, Himanshu Chauhna, Frontend, Webdev, Portfolio, devhimahnshuhc"
           />
           <meta name="author" content="Aman Kumar" />
         </Head>

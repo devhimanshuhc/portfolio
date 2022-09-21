@@ -7,28 +7,39 @@ import {
   useColorModeValue,
 } from "@chakra-ui/react"
 import * as React from "react"
-import { FaGithub, FaLinkedin, FaTwitter, FaGitlab } from "react-icons/fa"
+import {
+  FaGithub,
+  FaLinkedin,
+  FaInstagram,
+  FaSpotify,
+  FaDiscord,
+} from "react-icons/fa"
 
 const Links = [
   {
     name: "Github",
-    link: "https://github.com/amankrx",
+    link: "https://github.com/devhimanshuhc",
     icon: <FaGithub />,
   },
   {
     name: "LinkedIn",
-    link: "https://www.linkedin.com/in/amankrx/",
+    link: "https://www.linkedin.com/in/himanshu-chauhan-06baaa234/",
     icon: <FaLinkedin />,
   },
   {
-    name: "Twitter",
-    link: "https://twitter.com/amankrx",
-    icon: <FaTwitter />,
+    name: "Spotify",
+    link: "https://sptfy.com/Lykp",
+    icon: <FaSpotify />,
   },
   {
-    name: "Gitlab",
-    link: "https://twitter.com/amankrx",
-    icon: <FaGitlab />,
+    name: "Discord",
+    link: "https://discord.com/users/738138831852929093",
+    icon: <FaDiscord />,
+  },
+  {
+    name: "Instagram",
+    link: "https://www.instagram.com/19.hiimanshu/",
+    icon: <FaInstagram />,
   },
 ]
 
@@ -56,7 +67,7 @@ const Footer = () => (
       align="center"
       color={useColorModeValue("textMediumLight", "textMediumDark")}
     >
-      &copy; {new Date().getFullYear()} Aman Kumar. Made with{" "}
+      Made with{" "}
       <a href="https://nextjs.org/" target="_blank" rel="noreferrer">
         NextJS
       </a>{" "}
@@ -64,13 +75,13 @@ const Footer = () => (
       <a href="https://chakra-ui.com/" target="_blank" rel="noreferrer">
         Chakra UI
       </a>
-      . View Source on{" "}
+      . Forked from{" "}
       <a
         href="https://github.com/amankrx/portfolio"
         target="_blank"
         rel="noreferrer"
       >
-        GitHub
+        Aman Kumar
       </a>
     </Text>
   </Box>
