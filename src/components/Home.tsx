@@ -19,9 +19,9 @@ const HomePage = () => {
         Hey, I&apos;m {DETAILS.firstName} {DETAILS.lastName}!
       </h1>
       <p>
-        I&apos;m a self-taught frontend engineer. I&apos;m currently
-        working on my projects and looking for new opportunities. I&apos;m
-        passionate about learning new technologies.
+        I&apos;m a self-taught frontend engineer. I&apos;m currently working on
+        my projects and looking for new opportunities. I&apos;m passionate about
+        learning new technologies.
       </p>
       <hr />
       <Heading as="h2" size="lg">
