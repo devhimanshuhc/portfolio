@@ -39,7 +39,7 @@ const WorkPage = () => {
               w="250px"
               rounded="10px"
               overflow="hidden"
-              mb={{ lg: 1, sm: 20 }}
+              mb={{ base: 14, lg: 1, sm: 20 }}
               mx={{ md: 10 }}
               transition="all .4s ease"
               border="1px"
