@@ -74,8 +74,8 @@ const Navbar = () => {
             >
               <Image
                 src={useColorModeValue(
-                  "https://img.icons8.com/sf-ultralight/500/000000/satellite-sending-signal--v4.png",
-                  "https://img.icons8.com/sf-ultralight/500/FFFFFF/satellite-sending-signal--v4.png"
+                  "/brands/black.png",
+                  "/brands/white.png"
                 )}
                 alt="Logo"
                 width="68px"
