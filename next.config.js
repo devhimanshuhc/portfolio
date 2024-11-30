@@ -29,6 +29,21 @@ const nextConfig = {
       },
     ],
   },
+  // Performance Optimizations
+  swcMinify: true, // Use SWC for minification (faster than Terser)
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production', // Remove console.logs in production
+  },
+  experimental: {
+    optimizeCss: true, // Enable CSS optimization
+    turbo: true, // Enable Turbo
+  },
+  // Enable gzip compression
+  compress: true,
+  // Optimize production builds
+  productionBrowserSourceMaps: false, // Disable source maps in production
+  reactStrictMode: true,
+  poweredByHeader: false, // Remove X-Powered-By header
 }
 
 module.exports = nextConfig
