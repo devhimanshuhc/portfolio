@@ -112,15 +112,14 @@ function RubiksCube() {
 function Lights() {
   const directionalLightRef = useRef<THREE.DirectionalLight>(null)
  
-
   return (
     <>
       <ambientLight intensity={0.5} />
       <directionalLight
         ref={directionalLightRef}
+        castShadow
         position={[5, 5, 5]}
         intensity={1}
-        castShadow
         shadow-mapSize-width={2048}
         shadow-mapSize-height={2048}
       />
