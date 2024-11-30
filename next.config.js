@@ -35,8 +35,7 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production', // Remove console.logs in production
   },
   experimental: {
-    optimizeCss: true, // Enable CSS optimization
-    turbo: true, // Enable Turbo
+    optimizeCss: false // Disable CSS optimization for now
   },
   // Enable gzip compression
   compress: true,

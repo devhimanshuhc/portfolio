@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Space_Mono } from 'next/font/google'
 import './globals.css'
 import Background from '@/components/background'
@@ -8,20 +8,21 @@ const spaceMono = Space_Mono({
   weight: ['400', '700'],
   subsets: ['latin'],
   variable: '--font-space-mono',
-  display: 'swap', // Optimize font loading
+  display: 'swap',
   preload: true,
   adjustFontFallback: true,
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: '#000000',
+}
+
 export const metadata: Metadata = {
   title: 'Portfolio',
   description: 'Full Stack Developer & 3D Enthusiast',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-  },
-  themeColor: '#000000',
   manifest: '/manifest.json',
   icons: {
     icon: '/favicon.ico',
@@ -50,9 +51,6 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <meta name="theme-color" content="#000000" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="mobile-web-app-capable" content="yes" />
       </head>
       <body className={`${spaceMono.variable} font-mono relative min-h-screen`}>
         <Background />
