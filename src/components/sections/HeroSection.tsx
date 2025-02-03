@@ -1,22 +1,18 @@
-'use client'
+"use client";
 
-import { Button } from '@/components/ui/button'
-import { motion } from 'framer-motion'
-import dynamic from 'next/dynamic'
-import { contactMethods } from '@/data/contact'
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { contactMethods } from "@/data/contact";
 
 // Dynamically import the Scene component with no SSR
-const Scene = dynamic(() => import('@/components/3d/Scene'), {
+const Scene = dynamic(() => import("@/components/3d/Scene"), {
   ssr: false,
-})
+});
 
 export default function HeroSection() {
   return (
     <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12">
-      <div className="absolute inset-0 z-0">
-        <Scene />
-      </div>
-      
       <div className="z-10 w-full max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,7 +38,7 @@ export default function HeroSection() {
               </span>
             </h1>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-neutral-500">
-              I build things for the web
+              I build things for the web and mobile
             </h2>
           </motion.div>
 
@@ -53,7 +49,9 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.4 }}
             className="text-lg sm:text-xl text-neutral-400 max-w-xl"
           >
-            I'm a full-stack developer with a passion for 3D and design animation, creating immersive digital experiences that blend technology and creativity.
+            I'm a full-stack web and android developer with a passion for 3D and
+            design animation, creating immersive digital experiences that blend
+            technology and creativity.
           </motion.p>
 
           {/* CTA Buttons */}
@@ -90,17 +88,17 @@ export default function HeroSection() {
                 className="scroll-smooth text-lg flex items-center gap-2"
               >
                 <span>View Resume</span>
-                <svg 
-                  className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" 
-                  fill="none" 
-                  viewBox="0 0 24 24" 
+                <svg
+                  className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path 
-                    strokeLinecap="round" 
-                    strokeLinejoin="round" 
-                    strokeWidth={2} 
-                    d="M14 5l7 7m0 0l-7 7m7-7H3" 
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
                   />
                 </svg>
               </a>
@@ -139,7 +137,9 @@ export default function HeroSection() {
         transition={{ delay: 1.2, duration: 0.5 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center gap-2 z-20 sm:bottom-12"
       >
-        <span className="text-sm text-neutral-500 hidden sm:block">Scroll to explore</span>
+        <span className="text-sm text-neutral-500 hidden sm:block">
+          Scroll to explore
+        </span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 1.5, repeat: Infinity }}
@@ -153,5 +153,5 @@ export default function HeroSection() {
         </motion.div>
       </motion.div>
     </div>
-  )
+  );
 }

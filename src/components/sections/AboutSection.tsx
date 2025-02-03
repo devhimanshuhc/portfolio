@@ -1,6 +1,6 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
+import { motion } from "framer-motion";
 
 export default function AboutSection() {
   return (
@@ -17,17 +17,18 @@ export default function AboutSection() {
               </h1>
               <div className="mt-6 text-base leading-7 text-gray-300">
                 <p>
-                  Hello! I&apos;m Himanshu, a passionate Full Stack Developer 
-                  originally from Dehradun, the picturesque capital of Uttarakhand 
-                  nestled in the Himalayan foothills. Currently pursuing my graduation 
-                  in Nagpur, Maharashtra, where I&apos;m turning my tech dreams into reality.
+                  Hello! I&apos;m Himanshu, a passionate Full Stack Web &
+                  Android Developer originally from Dehradun, the picturesque
+                  capital of Uttarakhand nestled in the Himalayan foothills.
+                  Currently pursuing my graduation in Nagpur, Maharashtra, where
+                  I&apos;m turning my tech dreams into reality.
                 </p>
                 <p className="mt-4">
-                  Coming from the &quot;Queen of Hills&quot; to the &quot;Orange City,&quot; 
-                  my journey reflects my adaptability and drive. I focus on developing 
-                  elegant solutions that balance form and function, bringing together 
-                  the serenity of my hometown and the vibrancy of my university city 
-                  in every project I create.
+                  Coming from the &quot;Queen of Hills&quot; to the &quot;Orange
+                  City,&quot; my journey reflects my adaptability and drive. I
+                  focus on developing elegant solutions that balance form and
+                  function, bringing together the serenity of my hometown and
+                  the vibrancy of my university city in every project I create.
                 </p>
               </div>
             </div>
@@ -35,5 +36,5 @@ export default function AboutSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }
