@@ -1,34 +1,34 @@
-'use client'
+"use client";
 
-import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Preloader() {
-  const [isLoading, setIsLoading] = useState(true)
-  const [progress, setProgress] = useState(0)
+  const [isLoading, setIsLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const progressInterval = setInterval(() => {
-      setProgress(prev => {
+      setProgress((prev) => {
         if (prev >= 100) {
-          clearInterval(progressInterval)
-          return 100
+          clearInterval(progressInterval);
+          return 100;
         }
-        return prev + 1
-      })
-    }, 20)
+        return prev + 1;
+      });
+    }, 20);
 
     const timer = setTimeout(() => {
-      setIsLoading(false)
-    }, 2000)
+      setIsLoading(false);
+    }, 2000);
 
     return () => {
-      clearTimeout(timer)
-      clearInterval(progressInterval)
-    }
-  }, [])
+      clearTimeout(timer);
+      clearInterval(progressInterval);
+    };
+  }, []);
 
-  if (!isLoading) return null
+  if (!isLoading) return null;
 
   return (
     <motion.div
@@ -40,18 +40,21 @@ export default function Preloader() {
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `radial-gradient(circle at 25px 25px, neutral-500 2%, transparent 0%), radial-gradient(circle at 75px 75px, neutral-500 2%, transparent 0%)`,
-          backgroundSize: '100px 100px'
-        }} />
+        <div
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 25px 25px, neutral-500 2%, transparent 0%), radial-gradient(circle at 75px 75px, neutral-500 2%, transparent 0%)`,
+            backgroundSize: "100px 100px",
+          }}
+        />
       </div>
 
       <div className="relative flex flex-col items-center">
         {/* Logo Animation */}
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
-          animate={{ 
-            scale: 1, 
+          animate={{
+            scale: 1,
             opacity: 1,
           }}
           transition={{ duration: 0.5 }}
@@ -66,16 +69,16 @@ export default function Preloader() {
             transition={{
               duration: 2,
               repeat: Infinity,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             className="absolute inset-0 rounded-xl bg-neutral-800 blur-xl"
           />
-          
-          <div className="relative w-16 h-16 rounded-xl bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
+
+          {/* <div className="relative w-16 h-16 rounded-xl bg-gradient-to-br from-neutral-800 to-neutral-900 flex items-center justify-center">
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-neutral-50 to-neutral-400">
               HC
             </span>
-          </div>
+          </div> */}
         </motion.div>
 
         {/* Progress Text */}
@@ -115,5 +118,5 @@ export default function Preloader() {
         </div>
       </div>
     </motion.div>
-  )
+  );
 }

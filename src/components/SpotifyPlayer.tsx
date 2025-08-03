@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useEffect, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Image from 'next/image';
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 
 interface SpotifyTrack {
   name: string;
@@ -10,11 +10,12 @@ interface SpotifyTrack {
   albumArt: string;
   isPlaying: boolean;
   spotifyUrl: string;
+  isRecentlyPlayed?: boolean;
 }
 
 export default function SpotifyPlayer() {
   const [track, setTrack] = useState<SpotifyTrack | null>(null);
-  const [isMinimized, setIsMinimized] = useState(false);
+  const [isMinimized, setIsMinimized] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -23,34 +24,35 @@ export default function SpotifyPlayer() {
   const fetchNowPlaying = async () => {
     try {
       setIsRefreshing(true);
-      const response = await fetch('/api/spotify', {
-        cache: 'no-store',
+      const response = await fetch("/api/spotify", {
+        cache: "no-store",
         headers: {
-          'Cache-Control': 'no-cache',
-          'Pragma': 'no-cache'
-        }
+          "Cache-Control": "no-cache",
+          Pragma: "no-cache",
+        },
       });
-      
+
       if (!response.ok) {
-        throw new Error('Failed to fetch');
+        throw new Error("Failed to fetch");
       }
 
       const data = await response.json();
-      
-      if (data && data.isPlaying) {
+
+      if (data && (data.isPlaying || data.isRecentlyPlayed)) {
         setTrack({
           name: data.title,
           artist: data.artist,
           albumArt: data.albumImageUrl,
           isPlaying: data.isPlaying,
-          spotifyUrl: data.songUrl
+          spotifyUrl: data.songUrl,
+          isRecentlyPlayed: data.isRecentlyPlayed || false,
         });
       } else {
         setTrack(null);
       }
     } catch (error) {
-      console.error('Error fetching Spotify data:', error);
-      setError('Failed to fetch data');
+      console.error("Error fetching Spotify data:", error);
+      setError("Failed to fetch data");
       setTrack(null);
     } finally {
       setIsLoading(false);
@@ -69,7 +71,9 @@ export default function SpotifyPlayer() {
     if (error) {
       return (
         <div className="flex flex-col items-center justify-center h-full p-4 sm:p-6">
-          <p className="text-sm sm:text-base text-neutral-400 text-center">{error}</p>
+          <p className="text-sm sm:text-base text-neutral-400 text-center">
+            {error}
+          </p>
           <button
             onClick={fetchNowPlaying}
             className="mt-3 px-3 py-1.5 text-xs sm:text-sm text-neutral-400 hover:text-white bg-zinc-900 hover:bg-zinc-800 rounded-lg transition-colors duration-300"
@@ -91,7 +95,9 @@ export default function SpotifyPlayer() {
     if (!track) {
       return (
         <div className="flex items-center justify-center h-full p-4 sm:p-6">
-          <p className="text-sm sm:text-base text-neutral-400">Not playing anything</p>
+          <p className="text-sm sm:text-base text-neutral-400">
+            Not playing anything
+          </p>
         </div>
       );
     }
@@ -108,9 +114,16 @@ export default function SpotifyPlayer() {
             />
           </div>
           <div className="absolute inset-0 flex items-center justify-center bg-black/20 rounded-2xl">
-            <svg className="w-6 h-6 sm:w-7 sm:h-7 opacity-90 text-zinc-400" viewBox="0 0 24 24" fill="currentColor">
+            <svg
+              className={`w-6 h-6 sm:w-7 sm:h-7 opacity-90 ${
+                track.isPlaying ? "text-green-400" : "text-zinc-400"
+              }`}
+              viewBox="0 0 24 24"
+              fill="currentColor"
+            >
               <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
             </svg>
+            {/* Playing indicator dot */}
           </div>
         </div>
       );
@@ -135,10 +148,18 @@ export default function SpotifyPlayer() {
               {track.artist}
             </p>
             <div className="flex items-center gap-2 mt-3">
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 opacity-90 text-zinc-400" viewBox="0 0 24 24" fill="currentColor">
+              <svg
+                className={`w-4 h-4 sm:w-5 sm:h-5 opacity-90 ${
+                  track.isPlaying ? "text-green-400" : "text-zinc-400"
+                }`}
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
                 <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
               </svg>
-              <span className="text-xs text-neutral-400">Spotify</span>
+              <span className="text-xs text-neutral-400">
+                {track.isPlaying ? "Running This Moment" : "Previously On"}
+              </span>
             </div>
           </div>
         </div>
@@ -171,7 +192,11 @@ export default function SpotifyPlayer() {
         <motion.div
           layout
           className={`relative bg-gradient-to-br from-zinc-950/95 to-neutral-900/95 backdrop-blur-xl border border-zinc-800/20 rounded-2xl overflow-hidden ${
-            isMinimized ? 'w-14 sm:w-16 h-14 sm:h-16' : track ? 'w-[280px] sm:w-80' : 'w-[240px] sm:w-64 h-36 sm:h-40'
+            isMinimized
+              ? "w-14 sm:w-16 h-14 sm:h-16"
+              : track
+              ? "w-[280px] sm:w-80"
+              : "w-[240px] sm:w-64 h-36 sm:h-40"
           } transition-all duration-300`}
         >
           {renderContent()}
@@ -193,7 +218,7 @@ export default function SpotifyPlayer() {
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth={2}
-                  d={isMinimized ? 'M19 9l-7 7-7-7' : 'M5 15l7-7 7 7'}
+                  d={isMinimized ? "M19 9l-7 7-7-7" : "M5 15l7-7 7 7"}
                 />
               </motion.svg>
             </button>

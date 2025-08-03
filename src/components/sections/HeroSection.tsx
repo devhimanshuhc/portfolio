@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { contactMethods } from "@/data/contact";
+import LightRays from "@/components/LightRays";
 
 // Dynamically import the Scene component with no SSR
 const Scene = dynamic(() => import("@/components/3d/Scene"), {
@@ -13,6 +14,24 @@ const Scene = dynamic(() => import("@/components/3d/Scene"), {
 export default function HeroSection() {
   return (
     <div className="relative w-full min-h-screen flex flex-col items-center justify-center px-4 sm:px-8 lg:px-12">
+      {/* Light Rays Background */}
+      <div className="absolute inset-0 z-0">
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ffffff"
+          raysSpeed={0.8}
+          lightSpread={1.2}
+          rayLength={1.5}
+          followMouse={true}
+          mouseInfluence={0.08}
+          noiseAmount={0.05}
+          distortion={0.02}
+          fadeDistance={0.8}
+          saturation={0.9}
+          className="hero-light-rays"
+        />
+      </div>
+
       <div className="z-10 w-full max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
